@@ -1,11 +1,21 @@
 <script setup>
 import {reactive} from 'vue'
 import {Greet} from '../../wailsjs/go/main/App'
+import {GreetAsyncViaEvent} from '../../wailsjs/go/main/App'
+import { onMounted } from 'vue'
+import * as runtime from "../../wailsjs/runtime/runtime.js";
 
 const data = reactive({
   name: "",
   resultText: "Please enter your name below 👇",
 })
+
+function greetAsyncViaEvent(){
+  GreetAsyncViaEvent()
+  runtime.EventsOn("rcv:greet",(msg) =>{ data.resultText = msg})
+}
+
+onMounted(greetAsyncViaEvent)
 
 function greet() {
   Greet(data.name).then(result => {
@@ -21,6 +31,7 @@ function greet() {
     <div id="input" class="input-box">
       <input id="name" v-model="data.name" autocomplete="off" class="input" type="text"/>
       <button class="btn" @click="greet">Greet</button>
+<!--      <button class="btn" @click="GreetAsyncViaEvent">Greet async via events</button>-->
     </div>
   </main>
 </template>

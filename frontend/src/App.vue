@@ -1,20 +1,21 @@
 <script setup>
 import {NButton} from 'naive-ui'
+import {NSpace} from 'naive-ui'
 </script>
 
 <template>
   <div class="header">
-  <n-spance>
+  <n-space justify="center">
     <router-link class="rlink" to="/myself"><n-button type="primary" ghost @click="">我的</n-button></router-link>
     <router-link class="rlink" to="/beforeGame"><n-button type="info" ghost>对战前</n-button></router-link>
     <router-link class="rlink" to="/duringGame"><n-button type="success" ghost>对战中</n-button> </router-link>
     <router-link class="rlink"  to="/afterGame"><n-button type="warning" ghost>对战后</n-button></router-link>
-  </n-spance>
+  </n-space>
   </div>
   <router-view></router-view>
 </template>
 
-<style >
+<style scoped>
 #logo {
   display: block;
   width: 50%;
@@ -33,6 +34,7 @@ import {NButton} from 'naive-ui'
 
 .header{
   margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 </style>

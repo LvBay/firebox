@@ -3,6 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/go-vgo/robotgo"
+	hook "github.com/robotn/gohook"
+	"github.com/wailsapp/wails/v2/pkg/runtime"
+	"time"
 )
 
 // App struct
@@ -24,4 +28,22 @@ func (a *App) startup(ctx context.Context) {
 // Greet returns a greeting for the given name
 func (a *App) Greet(name string) string {
 	return fmt.Sprintf("Hello %s, It's show time!", name)
+}
+
+func (a *App) GetMouseClick() int {
+	return 1
+}
+
+func (a *App) GreetAsyncViaEvent() {
+	count := 0
+	go func() {
+		ch := robotgo.EventStart()
+		for event := range ch {
+			if event.Kind == hook.MouseUp {
+				count++
+				runtime.EventsEmit(a.ctx, "rcv:greet", count)
+				time.Sleep(1 * time.Second)
+			}
+		}
+	}()
 }
