@@ -13,3 +13,7 @@ export function Greet(arg1) {
 export function GreetAsyncViaEvent() {
   return window['go']['main']['App']['GreetAsyncViaEvent']();
 }
+
+export function OpenFileDialog() {
+  return window['go']['main']['App']['OpenFileDialog']();
+}

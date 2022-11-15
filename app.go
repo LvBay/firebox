@@ -47,3 +47,9 @@ func (a *App) GreetAsyncViaEvent() {
 		}
 	}()
 }
+
+func (a *App) OpenFileDialog() error {
+	p, err := runtime.OpenFileDialog(a.ctx, runtime.OpenDialogOptions{Title: "选取lol路径"})
+	fmt.Println("OpenFileDialog", p, err)
+	return err
+}

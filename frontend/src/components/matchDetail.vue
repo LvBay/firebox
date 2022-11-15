@@ -1,15 +1,32 @@
 <template>
 <div>
   <n-space vertical>
-    <div>对局日期 1</div>
-    <div>对局类型 2</div>
-    <div>id: {{ currentGameId }}</div>
+    <n-space>
+      <div>对局id {{currentGameId}}</div>
+      <div v-if="matchDetail.isWin">胜 </div>
+      <div v-else>负 </div>
+      <div>{{matchDetail.spendTime}}</div>
+    </n-space>
+    <n-space>
+      <n-space vertical>
+        <div v-for="item in matchDetail.team1">
+          <div>{{item.name}} {{item.kda}}</div>
+        </div>
+      </n-space>
+      <n-space vertical>
+        <div v-for="item in matchDetail.team2">
+          <div>{{item.name}} {{item.kda}}</div>
+        </div>
+      </n-space>
+    </n-space>
+    <n-button type="primary" @click="openDialog">选取lol启动文件</n-button>
   </n-space>
 </div>
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
+import {OpenFileDialog} from "../../wailsjs/go/main/App.js";
 
 const props = defineProps({
   currentGameId: {
@@ -17,7 +34,35 @@ const props = defineProps({
   }
 });
 
-const matchList = ref({time:"1",type:"test"})
+const matchDetail = ref({time:"1",type:"test"})
+
+function openDialog() {
+  OpenFileDialog()
+}
+
+function getMatchDetail(){
+  matchDetail.value = {
+    isWin:true,
+    spendTime:'34分钟',
+    team1:[
+      {name:'a',kda:'1/3/3'},
+      {name:'b',kda:'2/3/3'},
+      {name:'c',kda:'3/3/3'},
+      {name:'d',kda:'4/3/3'},
+      {name:'e',kda:'5/3/3'},
+    ],
+    team2:[
+      {name:'aa',kda:'1/3/3'},
+      {name:'bb',kda:'2/3/3'},
+      {name:'cc',kda:'3/3/3'},
+      {name:'dd',kda:'4/3/3'},
+      {name:'ee',kda:'5/3/3'},
+    ]
+  }
+}
+
+onMounted(getMatchDetail)
+
 </script>
 
 <style>

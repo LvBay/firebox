@@ -6,3 +6,5 @@ export function GetMouseClick():Promise<number>;
 export function Greet(arg1:string):Promise<string>;
 
 export function GreetAsyncViaEvent():Promise<void>;
+
+export function OpenFileDialog():Promise<Error>;
