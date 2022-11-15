@@ -10,7 +10,7 @@
         <div>
           <span style="margin-right: 20px">进步而非保守的 </span>
           <span style="margin-right: 20px">Lv 105 </span>
-          <n-button type="primary" ghost>查询战绩</n-button>
+          <n-button @click="showSummonerInfo" type="primary" ghost>查询战绩</n-button>
         </div>
       </n-space>
     </n-space>
@@ -72,6 +72,11 @@ import {NSpace,NButton,NCard,NIconWrapper,NProgress,NTabs,NTable, NTabPane,NIcon
 import { GameControllerOutline, LogoGithub } from '@vicons/ionicons5'
 import { Fire } from '@vicons/carbon'
 import { Tools } from '@vicons/carbon'
+import router from "../router/index";
+
+function showSummonerInfo(){
+  router.push("/summoner-info")
+}
 </script>
 
 <style scoped>

@@ -17,7 +17,7 @@ func main() {
 	// Create application with options
 	err := wails.Run(&options.App{
 		Title:            "firebox",
-		Width:            500,
+		Width:            900,
 		Height:           768,
 		Assets:           assets,
 		Frameless:        true,
