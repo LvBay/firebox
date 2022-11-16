@@ -14,20 +14,17 @@
 <script setup>
 import {ref} from 'vue'
 import MatchDetail from '../components/matchDetail.vue'
-import {OpenFileDialog} from "../../wailsjs/go/main/App.js";
 
 const matchList= ref([
   {gameId:1,isWin:true,kills:1,deaths:2,assists:3, detail:{}},
   {gameId:2,isWin:true,kills:1,deaths:2,assists:3, detail:{}},
 ])
 
-const currentGameId = ref(0)
+const currentGameId = ref(matchList.value[0].gameId)
 
 function changeCurrentGameId(data){
   currentGameId.value = data.gameId
 }
-
-
 
 </script>
 

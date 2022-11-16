@@ -4,7 +4,7 @@
     <n-space>
       <div>对局id {{currentGameId}}</div>
       <div v-if="matchDetail.isWin">胜 </div>
-      <div v-else>负 </div>
+      <div v-else>败 </div>
       <div>{{matchDetail.spendTime}}</div>
     </n-space>
     <n-space>
@@ -19,13 +19,13 @@
         </div>
       </n-space>
     </n-space>
-    <n-button type="primary" @click="openDialog">选取lol启动文件</n-button>
+<!--    <n-button type="primary" @click="openDialog">选取lol启动文件</n-button>-->
   </n-space>
 </div>
 </template>
 
 <script setup>
-import {onMounted, ref} from "vue";
+import {onMounted, ref, watch} from "vue";
 import {OpenFileDialog} from "../../wailsjs/go/main/App.js";
 
 const props = defineProps({
@@ -34,15 +34,22 @@ const props = defineProps({
   }
 });
 
-const matchDetail = ref({time:"1",type:"test"})
+const matchDetail = ref({type:"test"})
 
 function openDialog() {
   OpenFileDialog()
 }
 
-function getMatchDetail(){
+watch(props,function (val) {
+  getMatchDetail(val.currentGameId)
+})
+
+function getMatchDetail(id){
+  if (!id){
+    id = props.currentGameId
+  }
   matchDetail.value = {
-    isWin:true,
+    isWin:props.currentGameId==1,
     spendTime:'34分钟',
     team1:[
       {name:'a',kda:'1/3/3'},

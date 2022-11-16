@@ -15,7 +15,7 @@ import {Fire} from '@vicons/carbon'
           <span style="margin-right: 10px">
             <n-icon size="18" :component="ChevronDoubleDown16Regular" />
         </span>
-          <span>
+          <span style="margin-right: 10px">
             <n-icon size="18" :component="Dismiss12Filled" />
           </span>
         </div>
