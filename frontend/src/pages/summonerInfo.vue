@@ -3,7 +3,14 @@
     <div>
       <n-space vertical>
         <div class="list" v-for="(data,index) in matchList" @click="changeCurrentGameId(data)">
-          {{ data.gameId }}
+            <n-space>
+              <div>logo</div>
+              <div>5-3-16</div>
+              <div>11-09</div>
+            </n-space>
+            <n-space justify="center">
+              <div>单双排</div>
+            </n-space>
         </div>
       </n-space>
     </div>

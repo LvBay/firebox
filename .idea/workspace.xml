@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="50712a1c-fb77-4bc2-9efd-3e945f0a175d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/matchDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/matchDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/beforeGame.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/beforeGame.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/summonerInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/summonerInfo.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,6 +54,25 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/frontend/src/assets/images" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="firebox" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
+      <module name="firebox" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="DIRECTORY" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
