@@ -74,7 +74,6 @@
         </div>
       </n-space>
     </n-space>
-<!--    <n-button type="primary" @click="openDialog">选取lol启动文件</n-button>-->
   </n-space>
 </div>
 </template>
