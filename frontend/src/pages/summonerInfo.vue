@@ -3,7 +3,14 @@
     <div>
       <n-space vertical>
         <div class="list" v-for="(data,index) in matchList" @click="changeCurrentGameId(data)">
-          {{ data.gameId }}
+            <n-space>
+              <div>logo</div>
+              <div>5-3-16</div>
+              <div>11-09</div>
+            </n-space>
+            <n-space justify="center">
+              <div>单双排</div>
+            </n-space>
         </div>
       </n-space>
     </div>
@@ -14,20 +21,17 @@
 <script setup>
 import {ref} from 'vue'
 import MatchDetail from '../components/matchDetail.vue'
-import {OpenFileDialog} from "../../wailsjs/go/main/App.js";
 
 const matchList= ref([
   {gameId:1,isWin:true,kills:1,deaths:2,assists:3, detail:{}},
   {gameId:2,isWin:true,kills:1,deaths:2,assists:3, detail:{}},
 ])
 
-const currentGameId = ref(0)
+const currentGameId = ref(matchList.value[0].gameId)
 
 function changeCurrentGameId(data){
   currentGameId.value = data.gameId
 }
-
-
 
 </script>
 
