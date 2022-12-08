@@ -1,0 +1,75 @@
+server:
+  address:     ":8000"
+  openapiPath: "/api.json"
+  swaggerPath: "/swagger"
+  adminUid:
+    - '1y82gaf1000cme8ir8ojtjj100ats1pi'
+  levelList:
+    - '最强王者'
+    - '超凡大师'
+    - '钻石'
+    - '白金'
+    - '黄金'
+    - '白银'
+    - '青铜'
+    - '黑铁'
+  reasonList:
+    - '开脚本'
+    - '演员'
+    - '掉线'
+    - '前期稍微劣势就挂机'
+    - '大优势下突然挂机'
+    - '口吐芬芳'
+    - '玩的菜还要一直BB'
+    - '乱选英雄，游戏内狂送'
+    - '开局骗队友说是代练要位置，游戏内狂送'
+    - '暴脾气辅助，全图开送'
+  regionList:
+    - '峡谷之巅'
+    - '艾欧尼亚'
+    - '祖安'
+    - '诺克萨斯'
+    - '班德尔城'
+    - '皮尔特沃夫'
+    - '战争学院'
+    - '巨神峰'
+    - '雷瑟守备'
+    - '裁决之地'
+    - '黑色玫瑰'
+    - '暗影岛'
+    - '钢铁烈阳'
+    - '水晶之痕'
+    - '均衡教派'
+    - '影流'
+    - '守望之海'
+    - '征服之海'
+    - '卡拉曼达'
+    - '皮城警备'
+    - '比尔吉沃特'
+    - '德玛西亚'
+    - '弗雷尔卓德'
+    - '无畏先锋'
+    - '恕瑞玛'
+    - '扭曲丛林'
+    - '巨龙之巢'
+    - '教育网专区'
+    - '男爵领域'
+
+logger:
+  level : "all"
+  stdout: true
+
+
+database:
+  default:
+    link:   "mysql:root:123456@tcp(172.17.0.1:3306)/lolo"
+    debug:  true
+    timeMaintainDisabled: true
+
+# CLI.
+gfcli:
+  gen:
+    dao:
+      - link:            "mysql:root:123456@tcp(localhost:13306)/lolo"
+        tables:          "user_balance"
+        descriptionTag:  true

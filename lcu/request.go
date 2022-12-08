@@ -11,6 +11,7 @@ import (
 	"log"
 	"net/http"
 	"net/http/cookiejar"
+	"os"
 	"os/exec"
 	"strings"
 )
@@ -24,6 +25,7 @@ type AuthInfo struct {
 type Client struct {
 	AuthInfo AuthInfo
 	Client   *http.Client
+	Protocol string
 }
 
 func NewClient() (*Client, error) {
@@ -39,6 +41,10 @@ func NewClient() (*Client, error) {
 	ck, _ := cookiejar.New(nil)
 	cli := http.Client{Transport: &tr, Jar: ck}
 	c := &Client{Client: &cli, AuthInfo: *auth}
+	if isMockLcu() {
+		c.Protocol = "http"
+		c.Client = http.DefaultClient
+	}
 	return c, nil
 }
 
@@ -53,15 +59,19 @@ func (c *Client) do(req *http.Request) ([]byte, error) {
 	return bs, nil
 }
 
-func (c *Client) baseURL(method, path string, body interface{}) *http.Request {
+func (c *Client) buildRequest(method, path string, body interface{}) *http.Request {
 	b := bytes.NewReader(nil)
 	if body != nil {
 		bs, _ := json.Marshal(body)
 		b = bytes.NewReader(bs)
 	}
 
+	protocol := "https"
+	if c.Protocol != "" {
+		protocol = c.Protocol
+	}
 	req, _ := http.NewRequest(method,
-		fmt.Sprintf("https://127.0.0.1:%s%s", c.AuthInfo.AppPort, path), b)
+		fmt.Sprintf("%s://127.0.0.1:%s%s", protocol, c.AuthInfo.AppPort, path), b)
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Connection", "keep-alive")
@@ -71,7 +81,7 @@ func (c *Client) baseURL(method, path string, body interface{}) *http.Request {
 }
 
 func (c *Client) Do(method, path string, body interface{}) ([]byte, error) {
-	req := c.baseURL(method, path, body)
+	req := c.buildRequest(method, path, body)
 	bs, err := c.do(req)
 	if err != nil {
 		log.Println("http do failed", "err", err, "path", path)
@@ -79,7 +89,24 @@ func (c *Client) Do(method, path string, body interface{}) ([]byte, error) {
 	return bs, err
 }
 
+func isMockLcu() bool {
+	m := os.Getenv("LCU_MOCK")
+	if m == "true" {
+		return true
+	}
+	return false
+}
+
+var isMock bool
+
+func init() {
+	isMock = isMockLcu()
+}
+
 func GetAuthInfo() (*AuthInfo, error) {
+	if isMock {
+		return &AuthInfo{AppPort: "8000"}, nil
+	}
 	cmd := exec.Command("cmd", "/c", "wmic PROCESS WHERE name='LeagueClientUx.exe'")
 	out, err := cmd.Output()
 	fmt.Println(string(out), err)

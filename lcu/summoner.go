@@ -30,12 +30,14 @@ type RerollPoints struct {
 	PointsToReroll   int `json:"pointsToReroll"`
 }
 
+// GetCurrentSummoner 获取当前召唤师信息
 func (c *Client) GetCurrentSummoner() Summoner {
 	bs, _ := c.Do("GET", fmt.Sprintf("/lol-summoner/v1/current-summoner"), nil)
 	ret := toAny(bs, Summoner{})
 	return ret
 }
 
+// GetSummoner 根据id获取召唤师信息
 func (c *Client) GetSummoner(id string) Summoner {
 	bs, _ := c.Do("GET", fmt.Sprintf("/lol-summoner/v1/summoners/%s", id), nil)
 	ret := toAny(bs, Summoner{})
