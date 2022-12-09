@@ -1,9 +1,9 @@
 package main
 
 import (
-	"changeme/lcu"
 	"context"
 	"fmt"
+	"github.com/LvBay/firebox/lcu"
 	"github.com/go-vgo/robotgo"
 	hook "github.com/robotn/gohook"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
@@ -63,6 +63,18 @@ func (a *App) GreetAsyncViaEvent() {
 
 func (a *App) GetCurrentSummoner() lcu.Summoner {
 	return a.lcuClient.GetCurrentSummoner()
+}
+
+func (a *App) GetCurrentMatchList() lcu.MatchList {
+	return a.lcuClient.GetMatchListBySummonerId("test")
+}
+
+func (a *App) GetMatchInfo(id string) lcu.MatchInfo {
+	if id == "" {
+		id = "test"
+	}
+	ret, _ := a.lcuClient.GetMatchInfo(id)
+	return ret
 }
 
 func (a *App) OpenFileDialog() error {

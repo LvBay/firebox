@@ -1,4 +1,4 @@
-module changeme
+module github.com/LvBay/firebox
 
 go 1.18
 

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"changeme/lcu/mocklcu/controller"
 	"context"
+	"github.com/LvBay/firebox/lcu/mocklcu/controller"
 	"github.com/LvBay/gf/v2/frame/g"
 	"github.com/LvBay/gf/v2/net/ghttp"
 	"github.com/LvBay/gf/v2/os/gcmd"

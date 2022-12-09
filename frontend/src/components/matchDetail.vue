@@ -38,7 +38,7 @@
     </n-space>
     <n-space justify="space-between">
       <n-space vertical>
-        <div v-for="item in matchDetail.team1">
+        <div v-for="item in matchDetail.participantIdentities.slice(0,5)">
           <n-space>
             <div>英雄1</div>
             <n-space vertical>
@@ -49,14 +49,14 @@
               <n-space>
                 <div>闪现</div>
                 <div>点燃</div>
-                <div>{{item.name}} {{item.kda}}</div>
+                <div>{{item.player.summonerName}} {{item.stats.kills}}-{{item.stats.deaths}}-{{item.stats.assists}}</div>
               </n-space>
             </n-space>
           </n-space>
         </div>
       </n-space>
       <n-space vertical>
-        <div v-for="item in matchDetail.team2">
+        <div v-for="item in matchDetail.participantIdentities.slice(5,10)">
           <n-space>
             <div>英雄1</div>
             <n-space vertical>
@@ -67,7 +67,7 @@
               <n-space>
                 <div>闪现</div>
                 <div>点燃</div>
-                <div>{{item.name}} {{item.kda}}</div>
+                <div>{{item.player.summonerName}} {{item.stats.kills}}-{{item.stats.deaths}}-{{item.stats.assists}}</div>
               </n-space>
             </n-space>
           </n-space>
@@ -80,7 +80,7 @@
 
 <script setup>
 import {onMounted, ref, watch} from "vue";
-import {OpenFileDialog} from "../../wailsjs/go/main/App.js";
+import {OpenFileDialog,GetMatchInfo} from "../../wailsjs/go/main/App.js";
 
 const props = defineProps({
   currentGameId: {
@@ -88,38 +88,47 @@ const props = defineProps({
   }
 });
 
-const matchDetail = ref({type:"test"})
+const matchDetail = ref({participantIdentities:[]})
 
 function openDialog() {
   OpenFileDialog()
 }
 
 watch(props,function (val) {
+  console.log('currentGameId',val.currentGameId)
   getMatchDetail(val.currentGameId)
 })
 
 function getMatchDetail(id){
   if (!id){
-    id = props.currentGameId
+    id = 'test'
   }
-  matchDetail.value = {
-    isWin:props.currentGameId==1,
-    spendTime:'34分钟',
-    team1:[
-      {name:'aafdasdfasdf'+props.currentGameId,kda:'1/3/3'},
-      {name:'b'+props.currentGameId,kda:'2/3/3'},
-      {name:'c'+props.currentGameId,kda:'3/3/3'},
-      {name:'d'+props.currentGameId,kda:'4/3/3'},
-      {name:'e'+props.currentGameId,kda:'5/3/3'},
-    ],
-    team2:[
-      {name:'aa',kda:'1/3/3'},
-      {name:'bb',kda:'2/3/3'},
-      {name:'cc',kda:'3/3/3'},
-      {name:'dd',kda:'4/3/3'},
-      {name:'ee',kda:'5/3/3'},
-    ]
-  }
+  GetMatchInfo(id.toString()).then(result=>{
+    console.log('match info:',result)
+    matchDetail.value= result
+    // result.participants
+  })
+  // if (!id){
+  //   id = props.currentGameId
+  // }
+  // matchDetail.value = {
+  //   isWin:props.currentGameId==1,
+  //   spendTime:'34分钟',
+  //   team1:[
+  //     {name:'aafdasdfasdf'+props.currentGameId,kda:'1/3/3'},
+  //     {name:'b'+props.currentGameId,kda:'2/3/3'},
+  //     {name:'c'+props.currentGameId,kda:'3/3/3'},
+  //     {name:'d'+props.currentGameId,kda:'4/3/3'},
+  //     {name:'e'+props.currentGameId,kda:'5/3/3'},
+  //   ],
+  //   team2:[
+  //     {name:'aa',kda:'1/3/3'},
+  //     {name:'bb',kda:'2/3/3'},
+  //     {name:'cc',kda:'3/3/3'},
+  //     {name:'dd',kda:'4/3/3'},
+  //     {name:'ee',kda:'5/3/3'},
+  //   ]
+  // }
 }
 
 onMounted(getMatchDetail)

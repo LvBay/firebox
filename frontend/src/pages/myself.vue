@@ -8,7 +8,7 @@
       </div>
       <n-space>
         <div>
-          <span style="margin-right: 20px">进步而非保守的 </span>
+          <span style="margin-right: 20px">{{ summonerInfo.displayName }} </span>
           <span style="margin-right: 20px">Lv 105 </span>
           <n-button @click="showSummonerInfo" type="primary" ghost>查询战绩</n-button>
         </div>
@@ -68,15 +68,28 @@
 </template>
 
 <script setup>
-import {NSpace,NButton,NCard,NIconWrapper,NProgress,NTabs,NTable, NTabPane,NIcon} from 'naive-ui'
+import {NSpace,NButton,NIconWrapper,NProgress,NTabs,NTable, NTabPane,NIcon} from 'naive-ui'
 import { GameControllerOutline, LogoGithub } from '@vicons/ionicons5'
 import { Fire } from '@vicons/carbon'
 import { Tools } from '@vicons/carbon'
 import router from "../router/index";
+import {onMounted, ref} from "vue";
+import {GetCurrentSummoner} from '../../wailsjs/go/main/App'
 
 function showSummonerInfo(){
   router.push("/summoner-info")
 }
+
+const summonerInfo=ref({displayName:''})
+
+function getCurrentSummoner(){
+ GetCurrentSummoner().then(result=>{
+   summonerInfo.value = result
+ })
+}
+
+onMounted(getCurrentSummoner)
+
 </script>
 
 <style scoped>

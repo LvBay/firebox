@@ -10,12 +10,26 @@ func (c *Client) GetMatchInfo(gameID string) (MatchInfo, error) {
 	bs, _ := c.Do("GET", fmt.Sprintf("/lol-match-history/v1/games/%s", gameID), nil)
 	var ret MatchInfo
 	err := json.Unmarshal(bs, &ret)
+	fillStats(&ret)
 	return ret, err
 }
 
-func (c *Client) GetMatchListBySummonerId(summonerId string) Summoner {
+func fillStats(info *MatchInfo) {
+	m := map[int]*Stats{}
+	for _, v := range info.Participants {
+		m[v.ParticipantID] = &v.Stats
+	}
+	for i, v := range info.Participants {
+		info.ParticipantIdentities[i].Stats = m[v.ParticipantID]
+	}
+}
+
+func (c *Client) GetMatchListBySummonerId(summonerId string) MatchList {
 	bs, _ := c.Do("GET", fmt.Sprintf("/lol-match-history/v3/matchlist/account/%s", summonerId), nil)
-	ret := toAny(bs, Summoner{})
+	ret := toAny(bs, MatchList{})
+	for i := range ret.Games.Games {
+		fillStats(&ret.Games.Games[i])
+	}
 	return ret
 }
 
@@ -48,6 +62,7 @@ type Player struct {
 type ParticipantIdentities struct {
 	ParticipantID int    `json:"participantId"`
 	Player        Player `json:"player"`
+	Stats         *Stats `json:"stats"`
 }
 type Stats struct {
 	Assists                         int  `json:"assists"`
@@ -249,27 +264,29 @@ type MatchList struct {
 	Games      Games  `json:"games"`
 	PlatformID string `json:"platformId"`
 }
-type GamesGames struct {
-	GameCreation          int64                   `json:"gameCreation"`
-	GameCreationDate      time.Time               `json:"gameCreationDate"`
-	GameDuration          int                     `json:"gameDuration"`
-	GameID                int64                   `json:"gameId"`
-	GameMode              string                  `json:"gameMode"`
-	GameType              string                  `json:"gameType"`
-	GameVersion           string                  `json:"gameVersion"`
-	MapID                 int                     `json:"mapId"`
-	ParticipantIdentities []ParticipantIdentities `json:"participantIdentities"`
-	Participants          []Participants          `json:"participants"`
-	PlatformID            string                  `json:"platformId"`
-	QueueID               int                     `json:"queueId"`
-	SeasonID              int                     `json:"seasonId"`
-	Teams                 []interface{}           `json:"teams"`
-}
+
+//	type GamesGames struct {
+//		GameCreation          int64                   `json:"gameCreation"`
+//		GameCreationDate      time.Time               `json:"gameCreationDate"`
+//		GameDuration          int                     `json:"gameDuration"`
+//		GameID                int64                   `json:"gameId"`
+//		GameMode              string                  `json:"gameMode"`
+//		GameType              string                  `json:"gameType"`
+//		GameVersion           string                  `json:"gameVersion"`
+//		MapID                 int                     `json:"mapId"`
+//		ParticipantIdentities []ParticipantIdentities `json:"participantIdentities"`
+//		Participants          []Participants          `json:"participants"`
+//		PlatformID            string                  `json:"platformId"`
+//		QueueID               int                     `json:"queueId"`
+//		SeasonID              int                     `json:"seasonId"`
+//		Teams                 []interface{}           `json:"teams"`
+//	}
+
 type Games struct {
-	GameBeginDate  string       `json:"gameBeginDate"`
-	GameCount      int          `json:"gameCount"`
-	GameEndDate    string       `json:"gameEndDate"`
-	GameIndexBegin int          `json:"gameIndexBegin"`
-	GameIndexEnd   int          `json:"gameIndexEnd"`
-	Games          []GamesGames `json:"games"`
+	GameBeginDate  string      `json:"gameBeginDate"`
+	GameCount      int         `json:"gameCount"`
+	GameEndDate    string      `json:"gameEndDate"`
+	GameIndexBegin int         `json:"gameIndexBegin"`
+	GameIndexEnd   int         `json:"gameIndexEnd"`
+	Games          []MatchInfo `json:"games"`
 }
