@@ -1,12 +1,11 @@
 <template>
   <n-space class="body" >
-    <div>
-      <n-space vertical>
-        <div class="list" v-for="(data,index) in matchList" @click="changeCurrentGameId(data)">
+    <div >
+      <n-space vertical style="border-right: 1px solid white;height: 100%">
+        <div class="list" v-for="(data,index) in matchList" @click="changeCurrentGameId(data)" style="width: 100px;cursor:pointer" >
             <n-space>
-              <div>logo {{data.gameId}}</div>
-              <div>5-3-16</div>
-              <div>11-09</div>
+              <div>11-9</div>
+              <div>胜利</div>
             </n-space>
             <n-space justify="center">
               <div>单双排</div>

@@ -16,13 +16,13 @@ func main() {
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:            "firebox",
-		Width:            900,
-		Height:           768,
-		Assets:           assets,
-		Frameless:        true,
-		BackgroundColour: &options.RGBA{R: 27, G: 38, B: 54, A: 0},
-		OnStartup:        app.startup,
+		Title:     "firebox",
+		Width:     900,
+		Height:    768,
+		Assets:    assets,
+		Frameless: true,
+		//     background-color: rgb(73,64,106);
+		OnStartup: app.startup,
 		Bind: []interface{}{
 			app,
 		},

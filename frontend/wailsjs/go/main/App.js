@@ -29,3 +29,7 @@ export function GreetAsyncViaEvent() {
 export function OpenFileDialog() {
   return window['go']['main']['App']['OpenFileDialog']();
 }
+
+export function UploadReport() {
+  return window['go']['main']['App']['UploadReport']();
+}

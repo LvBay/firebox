@@ -108,7 +108,7 @@ func init() {
 
 func GetAuthInfo() (*AuthInfo, error) {
 	if isMock {
-		return &AuthInfo{AppPort: "8000"}, nil
+		return &AuthInfo{AppPort: "8001"}, nil
 	}
 	cmd := exec.Command("cmd", "/c", "wmic PROCESS WHERE name='LeagueClientUx.exe'")
 	out, err := cmd.Output()

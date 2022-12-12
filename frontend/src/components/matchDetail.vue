@@ -36,15 +36,21 @@
         <div>48/64</div>
       </n-space>
     </n-space>
-    <n-space justify="space-between">
+    <n-space justify="space-between" style="margin-top: 30px">
       <n-space vertical>
         <div v-for="item in matchDetail.participantIdentities.slice(0,5)">
           <n-space>
-            <div>英雄1</div>
             <n-space vertical>
               <n-space>
+                <div>英雄1</div>
                 <div>装备1</div>
                 <div>装备2</div>
+                <n-button ghost type="success" size="tiny">
+                  <n-icon><Heart /></n-icon>
+                </n-button>
+                <n-button ghost type="error" size="tiny">
+                  <n-icon><Exclamation /></n-icon>
+                </n-button>
               </n-space>
               <n-space>
                 <div>闪现</div>
@@ -55,14 +61,20 @@
           </n-space>
         </div>
       </n-space>
-      <n-space vertical>
+      <n-space vertical style="margin-left: 30px">
         <div v-for="item in matchDetail.participantIdentities.slice(5,10)">
           <n-space>
-            <div>英雄1</div>
             <n-space vertical>
               <n-space>
+                <div>英雄1</div>
                 <div>装备1</div>
                 <div>装备2</div>
+                <n-button ghost type="success" size="tiny">
+                  <n-icon><Heart /></n-icon>
+                </n-button>
+                <n-button ghost type="error" size="tiny">
+                  <n-icon><Exclamation /></n-icon>
+                </n-button>
               </n-space>
               <n-space>
                 <div>闪现</div>
@@ -81,6 +93,8 @@
 <script setup>
 import {onMounted, ref, watch} from "vue";
 import {OpenFileDialog,GetMatchInfo} from "../../wailsjs/go/main/App.js";
+import { Exclamation } from '@vicons/fa'
+import { Heart } from '@vicons/ionicons5'
 
 const props = defineProps({
   currentGameId: {
