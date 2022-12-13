@@ -13,7 +13,9 @@
         </div>
       </n-space>
     </div>
-    <MatchDetail :currentGameId=currentGameId> detail </MatchDetail>
+    <n-dialog-provider>
+      <MatchDetail :currentGameId=currentGameId> detail </MatchDetail>
+    </n-dialog-provider>
   </n-space>
 </template>
 

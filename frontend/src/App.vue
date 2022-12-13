@@ -5,6 +5,7 @@ import {Fire} from '@vicons/carbon'
 </script>
 
 <template>
+  <n-message-provider>
   <div>
     <div class="title">
       <n-space justify="space-between">
@@ -31,6 +32,7 @@ import {Fire} from '@vicons/carbon'
     </div>
     <router-view></router-view>
   </div>
+  </n-message-provider>
 </template>
 
 <style scoped>

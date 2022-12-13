@@ -11,6 +11,8 @@ var (
 		Username: "test",
 		Region:   "艾欧尼亚",
 		Level:    "黄金",
+		Domain:   "http://www.firefire.club/api",
+		// Domain:   "http://127.0.0.1:8000",
 	}
 )
 

@@ -1,3 +1,34 @@
+export namespace fireapi {
+	
+	export class Report {
+	    region: string;
+	    reason: string;
+	    level: string;
+	    reportType: number;
+	    extraGiftId: number;
+	    reportedName: string;
+	    creatorName: string;
+	    extInfo: string;
+	
+	    static createFrom(source: any = {}) {
+	        return new Report(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.region = source["region"];
+	        this.reason = source["reason"];
+	        this.level = source["level"];
+	        this.reportType = source["reportType"];
+	        this.extraGiftId = source["extraGiftId"];
+	        this.reportedName = source["reportedName"];
+	        this.creatorName = source["creatorName"];
+	        this.extInfo = source["extInfo"];
+	    }
+	}
+
+}
+
 export namespace lcu {
 	
 	export class Bans {

@@ -2,6 +2,7 @@ package fireapi
 
 import (
 	"context"
+	"fmt"
 	"github.com/LvBay/gf/v2/net/gclient"
 	"github.com/LvBay/gf/v2/os/gctx"
 	"log"
@@ -27,12 +28,15 @@ func (c *FireClient) CreateReport(report Report) error {
 	report.CreatorName = c.Username
 	report.Region = c.Region
 	report.Level = c.Level
-	resp := client.PostVar(context.Background(), "http://127.0.0.1:8000/v2/report", report)
+	u := fmt.Sprintf("%s/v2/report", c.Domain)
+	resp := client.PostVar(context.Background(), u, report)
 	log.Println(resp.String())
+
 	return nil
 }
 
 type FireClient struct {
+	Domain   string
 	Username string
 	Region   string
 	Level    string

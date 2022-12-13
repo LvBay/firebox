@@ -45,10 +45,10 @@
                 <div>英雄1</div>
                 <div>装备1</div>
                 <div>装备2</div>
-                <n-button ghost type="success" size="tiny">
+                <n-button ghost type="success" size="tiny" @click="likeReport(item,matchDetail.gameId,2)">
                   <n-icon><Heart /></n-icon>
                 </n-button>
-                <n-button ghost type="error" size="tiny">
+                <n-button ghost type="error" size="tiny" @click="likeReport(item,matchDetail.gameId,1)">
                   <n-icon><Exclamation /></n-icon>
                 </n-button>
               </n-space>
@@ -69,10 +69,10 @@
                 <div>英雄1</div>
                 <div>装备1</div>
                 <div>装备2</div>
-                <n-button ghost type="success" size="tiny">
+                <n-button ghost type="success" size="tiny" @click="likeReport(item,matchDetail.gameId,2)">
                   <n-icon><Heart /></n-icon>
                 </n-button>
-                <n-button ghost type="error" size="tiny">
+                <n-button ghost type="error" size="tiny" @click="likeReport(item,matchDetail.gameId,1)">
                   <n-icon><Exclamation /></n-icon>
                 </n-button>
               </n-space>
@@ -92,9 +92,10 @@
 
 <script setup>
 import {onMounted, ref, watch} from "vue";
-import {OpenFileDialog,GetMatchInfo} from "../../wailsjs/go/main/App.js";
+import {OpenFileDialog,GetMatchInfo,CreateReport} from "../../wailsjs/go/main/App.js";
 import { Exclamation } from '@vicons/fa'
 import { Heart } from '@vicons/ionicons5'
+import { useMessage, useDialog } from 'naive-ui'
 
 const props = defineProps({
   currentGameId: {
@@ -104,6 +105,9 @@ const props = defineProps({
 
 const matchDetail = ref({participantIdentities:[]})
 
+const message = useMessage()
+const dialog = useDialog()
+
 function openDialog() {
   OpenFileDialog()
 }
@@ -112,6 +116,32 @@ watch(props,function (val) {
   console.log('currentGameId',val.currentGameId)
   getMatchDetail(val.currentGameId)
 })
+
+function likeReport(item,gameId,reportType){
+  let r = {
+    reason:"firebox",
+    reportedName:item.player.summonerName,
+    extInfo:JSON.stringify({gameId:gameId}),
+    reportType:reportType,
+  }
+  let title = '举报'
+  if (reportType==2){
+    title='点赞'
+  }
+  dialog.warning({
+    title: title,
+    content: title+' '+ r.reportedName+'?',
+    positiveText: '确定',
+    negativeText: '取消',
+    onPositiveClick: () => {
+      CreateReport(r).then(result=>{
+        console.log('举报成功')
+      })
+    },
+    onNegativeClick: () => {
+    }
+  })
+}
 
 function getMatchDetail(id){
   if (!id){

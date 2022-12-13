@@ -22,6 +22,7 @@ type Summoner struct {
 	XpSinceLastLevel            int          `json:"xpSinceLastLevel"`
 	XpUntilNextLevel            int          `json:"xpUntilNextLevel"`
 }
+
 type RerollPoints struct {
 	CurrentPoints    int `json:"currentPoints"`
 	MaxRolls         int `json:"maxRolls"`

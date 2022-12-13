@@ -20,7 +20,7 @@ func main() {
 		Width:     900,
 		Height:    768,
 		Assets:    assets,
-		Frameless: true,
+		Frameless: false,
 		//     background-color: rgb(73,64,106);
 		OnStartup: app.startup,
 		Bind: []interface{}{

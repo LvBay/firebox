@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/LvBay/firebox/fireapi"
 	"github.com/LvBay/firebox/lcu"
 	"github.com/go-vgo/robotgo"
 	hook "github.com/robotn/gohook"
@@ -75,6 +76,18 @@ func (a *App) GetMatchInfo(id string) lcu.MatchInfo {
 	}
 	ret, _ := a.lcuClient.GetMatchInfo(id)
 	return ret
+}
+
+var fireClient = fireapi.FireClient{
+	Username: "test",
+	Region:   "艾欧尼亚",
+	Level:    "黄金",
+	Domain:   "http://127.0.0.1:8000",
+}
+
+func (a *App) CreateReport(report fireapi.Report) error {
+	fireClient.CreateReport(report)
+	return nil
 }
 
 func (a *App) OpenFileDialog() error {
