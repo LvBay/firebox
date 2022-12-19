@@ -3,7 +3,7 @@ package controller
 import (
 	"context"
 	"github.com/LvBay/firebox/lcu"
-	"github.com/LvBay/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/frame/g"
 )
 
 type GetMatchInfoReq struct {

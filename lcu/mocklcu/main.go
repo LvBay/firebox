@@ -3,10 +3,10 @@ package main
 import (
 	"context"
 	"github.com/LvBay/firebox/lcu/mocklcu/controller"
-	"github.com/LvBay/gf/v2/frame/g"
-	"github.com/LvBay/gf/v2/net/ghttp"
-	"github.com/LvBay/gf/v2/os/gcmd"
-	"github.com/LvBay/gf/v2/os/gctx"
+	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/net/ghttp"
+	"github.com/gogf/gf/v2/os/gcmd"
+	"github.com/gogf/gf/v2/os/gctx"
 )
 
 func main() {

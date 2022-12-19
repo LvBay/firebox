@@ -67,7 +67,11 @@ func (a *App) GetCurrentSummoner() lcu.Summoner {
 }
 
 func (a *App) GetCurrentMatchList() lcu.MatchList {
-	return a.lcuClient.GetMatchListBySummonerId("test")
+	id := "test"
+	if lcu.CurrSummoner != nil {
+		id = fmt.Sprint(lcu.CurrSummoner.SummonerID)
+	}
+	return a.lcuClient.GetMatchListBySummonerId(id)
 }
 
 func (a *App) GetMatchInfo(id string) lcu.MatchInfo {

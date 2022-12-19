@@ -3,8 +3,8 @@ package fireapi
 import (
 	"context"
 	"fmt"
-	"github.com/LvBay/gf/v2/net/gclient"
-	"github.com/LvBay/gf/v2/os/gctx"
+	"github.com/gogf/gf/v2/net/gclient"
+	"github.com/gogf/gf/v2/os/gctx"
 	"log"
 )
 

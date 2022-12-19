@@ -15,27 +15,32 @@ func (c *Client) GetMatchInfo(gameID string) (MatchInfo, error) {
 }
 
 func fillStats(info *MatchInfo) {
-	m := map[int]*Stats{}
+	m := map[int]Stats{}
 	for _, v := range info.Participants {
-		m[v.ParticipantID] = &v.Stats
+		m[v.ParticipantID] = v.Stats
 	}
-	for i, v := range info.Participants {
-		info.ParticipantIdentities[i].Stats = m[v.ParticipantID]
+	for i, v := range info.ParticipantIdentities {
+		s := m[v.ParticipantID]
+		info.ParticipantIdentities[i].Stats = &s
 	}
 }
 
 func (c *Client) GetMatchListBySummonerId(summonerId string) MatchList {
-	bs, _ := c.Do("GET", fmt.Sprintf("/lol-match-history/v3/matchlist/account/%s", summonerId), nil)
+	bs, _ := c.Do("GET", fmt.Sprintf("/lol-match-history/v3/matchlist/account/%s?endIndex=10", summonerId), nil)
 	ret := toAny(bs, MatchList{})
-	for i := range ret.Games.Games {
-		fillStats(&ret.Games.Games[i])
+	games := ret.Games.Games
+	orderList := make([]MatchInfo, 0, len(games))
+	for i := len(games) - 1; i > 0; i-- {
+		games[i].GameCreationDate = time.UnixMilli(games[i].GameCreation).Format("01-02")
+		orderList = append(orderList, games[i])
 	}
+	ret.Games.Games = orderList
 	return ret
 }
 
 type MatchInfo struct {
 	GameCreation          int64                   `json:"gameCreation"`
-	GameCreationDate      time.Time               `json:"gameCreationDate"`
+	GameCreationDate      string                  `json:"gameCreationDate"`
 	GameDuration          int                     `json:"gameDuration"`
 	GameID                int64                   `json:"gameId"`
 	GameMode              string                  `json:"gameMode"`

@@ -86,6 +86,7 @@ func (c *Client) Do(method, path string, body interface{}) ([]byte, error) {
 	bs, err := c.do(req)
 	log.Println("debug info method", req.Method)
 	log.Println("debug info url", req.URL)
+	log.Println("debug info resp", string(bs))
 	if err != nil {
 		log.Println("http do failed", "err", err, "path", path)
 	}

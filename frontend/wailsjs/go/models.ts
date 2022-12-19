@@ -605,8 +605,7 @@ export namespace lcu {
 	}
 	export class MatchInfo {
 	    gameCreation: number;
-	    // Go type: time.Time
-	    gameCreationDate: any;
+	    gameCreationDate: string;
 	    gameDuration: number;
 	    gameId: number;
 	    gameMode: string;
@@ -627,7 +626,7 @@ export namespace lcu {
 	    constructor(source: any = {}) {
 	        if ('string' === typeof source) source = JSON.parse(source);
 	        this.gameCreation = source["gameCreation"];
-	        this.gameCreationDate = this.convertValues(source["gameCreationDate"], null);
+	        this.gameCreationDate = source["gameCreationDate"];
 	        this.gameDuration = source["gameDuration"];
 	        this.gameId = source["gameId"];
 	        this.gameMode = source["gameMode"];

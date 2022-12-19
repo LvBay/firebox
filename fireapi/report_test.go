@@ -1,8 +1,8 @@
 package fireapi
 
 import (
-	"github.com/LvBay/gf/v2/frame/g"
-	"github.com/LvBay/gf/v2/util/gconv"
+	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/util/gconv"
 	"testing"
 )
 
