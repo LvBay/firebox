@@ -2,6 +2,7 @@ package main
 
 import (
 	"embed"
+	"github.com/wailsapp/wails/v2/pkg/options/mac"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
@@ -17,14 +18,22 @@ func main() {
 	// Create application with options
 	err := wails.Run(&options.App{
 		Title:     "firebox",
-		Width:     900,
+		Width:     1110,
 		Height:    768,
 		Assets:    assets,
 		Frameless: false,
 		//     background-color: rgb(73,64,106);
-		OnStartup: app.startup,
+		BackgroundColour: options.NewRGB(73, 64, 106),
+		OnStartup:        app.startup,
 		Bind: []interface{}{
 			app,
+		},
+		Mac: &mac.Options{
+			TitleBar:             mac.TitleBarHidden(),
+			Appearance:           "",
+			WebviewIsTransparent: true,
+			WindowIsTranslucent:  true,
+			About:                nil,
 		},
 	})
 

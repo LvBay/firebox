@@ -1,6 +1,9 @@
 package controller
 
-import "github.com/LvBay/firebox/lcu"
+import (
+	"github.com/LvBay/firebox/lcu"
+	"github.com/gogf/gf/v2/util/grand"
+)
 
 var yiVsGe = lcu.MatchInfo{
 	GameDuration: 1800,
@@ -68,16 +71,36 @@ var yiVsGe = lcu.MatchInfo{
 		},
 	},
 	Participants: []lcu.Participants{
-		{ParticipantID: 1, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 1}},
-		{ParticipantID: 2, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 2}},
-		{ParticipantID: 3, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 3}},
-		{ParticipantID: 4, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 4}},
-		{ParticipantID: 5, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5}},
-		{ParticipantID: 6, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5}},
-		{ParticipantID: 7, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5}},
-		{ParticipantID: 8, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5}},
-		{ParticipantID: 9, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5}},
-		{ParticipantID: 10, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5}},
+		{ParticipantID: 1, Spell1ID: randSpell(), Spell2ID: randSpell(), Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 1,
+			Item0: randItem(), Item1: randItem(), Item2: randItem(), Item3: randItem(), Item4: randItem(), Item5: randItem(), Item6: randItem()},
+		},
+		{ParticipantID: 2, Spell1ID: randSpell(), Spell2ID: randSpell(), Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 2,
+			Item0: randItem(), Item1: randItem(), Item2: randItem(), Item3: randItem(), Item4: randItem(), Item5: randItem(), Item6: randItem()},
+		},
+		{ParticipantID: 3, Spell1ID: randSpell(), Spell2ID: randSpell(), Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 3,
+			Item0: randItem(), Item1: randItem(), Item2: randItem(), Item3: randItem(), Item4: randItem(), Item5: randItem(), Item6: randItem()},
+		},
+		{ParticipantID: 4, Spell1ID: randSpell(), Spell2ID: randSpell(), Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 4,
+			Item0: randItem(), Item1: randItem(), Item2: randItem(), Item3: randItem(), Item4: randItem(), Item5: randItem(), Item6: randItem()},
+		},
+		{ParticipantID: 5, Spell1ID: randSpell(), Spell2ID: randSpell(), Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5,
+			Item0: randItem(), Item1: randItem(), Item2: randItem(), Item3: randItem(), Item4: randItem(), Item5: randItem(), Item6: randItem()},
+		},
+		{ParticipantID: 6, Spell1ID: randSpell(), Spell2ID: randSpell(), Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5,
+			Item0: randItem(), Item1: randItem(), Item2: randItem(), Item3: randItem(), Item4: randItem(), Item5: randItem(), Item6: randItem()},
+		},
+		{ParticipantID: 7, Spell1ID: randSpell(), Spell2ID: randSpell(), Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5,
+			Item0: randItem(), Item1: randItem(), Item2: randItem(), Item3: randItem(), Item4: randItem(), Item5: randItem(), Item6: randItem()},
+		},
+		{ParticipantID: 8, Spell1ID: randSpell(), Spell2ID: randSpell(), Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5,
+			Item0: randItem(), Item1: randItem(), Item2: randItem(), Item3: randItem(), Item4: randItem(), Item5: randItem(), Item6: randItem()},
+		},
+		{ParticipantID: 9, Spell1ID: randSpell(), Spell2ID: randSpell(), Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5,
+			Item0: randItem(), Item1: randItem(), Item2: randItem(), Item3: randItem(), Item4: randItem(), Item5: randItem(), Item6: randItem()},
+		},
+		{ParticipantID: 10, Spell1ID: randSpell(), Spell2ID: randSpell(), Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5,
+			Item0: randItem(), Item1: randItem(), Item2: randItem(), Item3: randItem(), Item4: randItem(), Item5: randItem(), Item6: randItem()},
+		},
 	},
 }
 
@@ -152,15 +175,45 @@ var yiVsGe2 = lcu.MatchInfo{
 		},
 	},
 	Participants: []lcu.Participants{
-		{ParticipantID: 1, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 1}},
-		{ParticipantID: 2, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 2}},
-		{ParticipantID: 3, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 3}},
-		{ParticipantID: 4, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 4}},
-		{ParticipantID: 5, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5}},
-		{ParticipantID: 6, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5}},
-		{ParticipantID: 7, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5}},
-		{ParticipantID: 8, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5}},
-		{ParticipantID: 9, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5}},
-		{ParticipantID: 10, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5}},
+		{ParticipantID: 1, Spell1ID: randSpell(), Spell2ID: randSpell(), ChampionID: 1, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 1,
+			Item0: randItem(), Item1: randItem(), Item2: randItem(), Item3: randItem(), Item4: randItem(), Item5: randItem(), Item6: randItem()},
+		},
+		{ParticipantID: 2, Spell1ID: randSpell(), Spell2ID: randSpell(), ChampionID: 2, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 2,
+			Item0: randItem(), Item1: randItem(), Item2: randItem(), Item3: randItem(), Item4: randItem(), Item5: randItem(), Item6: randItem()},
+		},
+		{ParticipantID: 3, Spell1ID: randSpell(), Spell2ID: randSpell(), ChampionID: 3, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 3,
+			Item0: randItem(), Item1: randItem(), Item2: randItem(), Item3: randItem(), Item4: randItem(), Item5: randItem(), Item6: randItem()},
+		},
+		{ParticipantID: 4, Spell1ID: randSpell(), Spell2ID: randSpell(), ChampionID: 4, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 4,
+			Item0: randItem(), Item1: randItem(), Item2: randItem(), Item3: randItem(), Item4: randItem(), Item5: randItem(), Item6: randItem()},
+		},
+		{ParticipantID: 5, Spell1ID: randSpell(), Spell2ID: randSpell(), ChampionID: 5, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5,
+			Item0: randItem(), Item1: randItem(), Item2: randItem(), Item3: randItem(), Item4: randItem(), Item5: randItem(), Item6: randItem()},
+		},
+		{ParticipantID: 6, Spell1ID: randSpell(), Spell2ID: randSpell(), ChampionID: 6, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5,
+			Item0: randItem(), Item1: randItem(), Item2: randItem(), Item3: randItem(), Item4: randItem(), Item5: randItem(), Item6: randItem()},
+		},
+		{ParticipantID: 7, Spell1ID: randSpell(), Spell2ID: randSpell(), ChampionID: 7, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5,
+			Item0: randItem(), Item1: randItem(), Item2: randItem(), Item3: randItem(), Item4: randItem(), Item5: randItem(), Item6: randItem()},
+		},
+		{ParticipantID: 8, Spell1ID: randSpell(), Spell2ID: randSpell(), ChampionID: 8, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5,
+			Item0: randItem(), Item1: randItem(), Item2: randItem(), Item3: randItem(), Item4: randItem(), Item5: randItem(), Item6: randItem()},
+		},
+		{ParticipantID: 9, Spell1ID: randSpell(), Spell2ID: randSpell(), ChampionID: 9, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5,
+			Item0: randItem(), Item1: randItem(), Item2: randItem(), Item3: randItem(), Item4: randItem(), Item5: randItem(), Item6: randItem()},
+		},
+		{ParticipantID: 10, Spell1ID: randSpell(), Spell2ID: randSpell(), ChampionID: 10, Stats: lcu.Stats{Kills: 10, Deaths: 1, Assists: 5,
+			Item0: randItem(), Item1: randItem(), Item2: randItem(), Item3: randItem(), Item4: randItem(), Item5: randItem(), Item6: randItem()},
+		},
 	},
+}
+
+func randItem() int {
+	return grand.N(3050, 3090)
+}
+
+func randSpell() int {
+	n := grand.N(0, 9)
+	list := []int{4, 14, 11, 6, 12, 21, 3, 1, 7, 32}
+	return list[n]
 }

@@ -30,7 +30,7 @@ func (c *Client) GetMatchListBySummonerId(summonerId string) MatchList {
 	ret := toAny(bs, MatchList{})
 	games := ret.Games.Games
 	orderList := make([]MatchInfo, 0, len(games))
-	for i := len(games) - 1; i > 0; i-- {
+	for i := len(games) - 1; i >= 0; i-- {
 		games[i].GameCreationDate = time.UnixMilli(games[i].GameCreation).Format("01-02")
 		orderList = append(orderList, games[i])
 	}

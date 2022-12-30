@@ -12,14 +12,14 @@ import {Fire} from '@vicons/carbon'
         <div>
 <!--          <n-icon size="18" :component="Fire" />-->
         </div>
-        <div>
-          <span style="margin-right: 10px">
-            <n-icon size="18" :component="ChevronDoubleDown16Regular" />
-        </span>
-          <span style="margin-right: 10px">
-            <n-icon size="18" :component="Dismiss12Filled" />
-          </span>
-        </div>
+<!--        <div>-->
+<!--          <span style="margin-right: 10px">-->
+<!--            <n-icon size="18" :component="ChevronDoubleDown16Regular" />-->
+<!--        </span>-->
+<!--          <span style="margin-right: 10px">-->
+<!--            <n-icon size="18" :component="Dismiss12Filled" />-->
+<!--          </span>-->
+<!--        </div>-->
       </n-space>
     </div>
     <div class="header">
