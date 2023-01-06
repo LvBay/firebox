@@ -22,6 +22,8 @@ func (s *service) GetCurrentSummoner(ctx context.Context, req *CurrentSummonerRe
 	res := &CurrentSummonerRes{lcu.Summoner{
 		DisplayName:   "测试呀",
 		SummonerLevel: 100,
+		AccountID:     11,
+		SummonerID:    11,
 	}}
 	return res, nil
 }

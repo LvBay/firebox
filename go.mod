@@ -5,6 +5,7 @@ go 1.18
 require (
 	github.com/go-vgo/robotgo v0.100.10
 	github.com/gogf/gf/v2 v2.2.5
+	github.com/gorilla/websocket v1.5.0
 	github.com/robotn/gohook v0.31.3
 	github.com/wailsapp/wails/v2 v2.1.0
 )
@@ -23,7 +24,6 @@ require (
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/go-redis/redis/v8 v8.11.5 // indirect
 	github.com/google/uuid v1.1.2 // indirect
-	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/grokify/html-strip-tags-go v0.0.1 // indirect
 	github.com/imdario/mergo v0.3.12 // indirect
 	github.com/jchv/go-winloader v0.0.0-20210711035445-715c2860da7e // indirect

@@ -14,6 +14,10 @@ export function GetCurrentSummoner() {
   return window['go']['main']['App']['GetCurrentSummoner']();
 }
 
+export function GetEnemySummonerIdAndSummonerName() {
+  return window['go']['main']['App']['GetEnemySummonerIdAndSummonerName']();
+}
+
 export function GetMatchInfo(arg1) {
   return window['go']['main']['App']['GetMatchInfo'](arg1);
 }
@@ -32,4 +36,8 @@ export function GreetAsyncViaEvent() {
 
 export function OpenFileDialog() {
   return window['go']['main']['App']['OpenFileDialog']();
+}
+
+export function WatchGamePhase() {
+  return window['go']['main']['App']['WatchGamePhase']();
 }

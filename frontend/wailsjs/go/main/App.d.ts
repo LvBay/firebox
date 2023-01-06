@@ -9,6 +9,8 @@ export function GetCurrentMatchList():Promise<lcu.MatchList>;
 
 export function GetCurrentSummoner():Promise<lcu.Summoner>;
 
+export function GetEnemySummonerIdAndSummonerName():Promise<lcu.SummonerListInGame>;
+
 export function GetMatchInfo(arg1:string):Promise<lcu.MatchInfo>;
 
 export function GetMouseClick():Promise<number>;
@@ -18,3 +20,5 @@ export function Greet(arg1:string):Promise<string>;
 export function GreetAsyncViaEvent():Promise<void>;
 
 export function OpenFileDialog():Promise<Error>;
+
+export function WatchGamePhase():Promise<void>;

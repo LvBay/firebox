@@ -1,7 +1,7 @@
 <script setup>
 import {reactive} from 'vue'
 import {Greet} from '../../wailsjs/go/main/App'
-import {GreetAsyncViaEvent} from '../../wailsjs/go/main/App'
+import {WatchGamePhase} from '../../wailsjs/go/main/App'
 import { onMounted } from 'vue'
 import * as runtime from "../../wailsjs/runtime/runtime.js";
 
@@ -11,8 +11,10 @@ const data = reactive({
 })
 
 function greetAsyncViaEvent(){
-  GreetAsyncViaEvent()
-  runtime.EventsOn("rcv:greet",(msg) =>{ data.resultText = msg})
+  WatchGamePhase()
+  runtime.EventsOn("rcv:gamePhase",(msg) =>{
+    data.resultText = msg
+  })
 }
 
 onMounted(greetAsyncViaEvent)

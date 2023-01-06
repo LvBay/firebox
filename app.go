@@ -62,8 +62,21 @@ func (a *App) GreetAsyncViaEvent() {
 	}()
 }
 
+func (a *App) WatchGamePhase() {
+	go func() {
+		for event := range a.lcuClient.GamePhaseCh {
+			log.Println("gamePhase:", event)
+			runtime.EventsEmit(a.ctx, "rcv:gamePhase", event)
+		}
+	}()
+}
+
 func (a *App) GetCurrentSummoner() lcu.Summoner {
 	return a.lcuClient.GetCurrentSummoner()
+}
+
+func (a *App) GetEnemySummonerIdAndSummonerName() lcu.SummonerListInGame {
+	return a.lcuClient.GetEnemySummonerIdAndSummonerName()
 }
 
 func (a *App) GetCurrentMatchList() lcu.MatchList {

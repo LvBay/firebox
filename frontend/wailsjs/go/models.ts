@@ -31,6 +31,18 @@ export namespace fireapi {
 
 export namespace lcu {
 	
+	export class AdditionalProp1 {
+	    spells: number[];
+	
+	    static createFrom(source: any = {}) {
+	        return new AdditionalProp1(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.spells = source["spells"];
+	    }
+	}
 	export class Bans {
 	    championId: number;
 	    pickTurn: number;
@@ -815,6 +827,81 @@ export namespace lcu {
 		    return a;
 		}
 	}
+	export class Team {
+	    additionalProp1: AdditionalProp1;
+	    accountId: number;
+	    summonerName: string;
+	    summonerInternalName: string;
+	    selectedPosition: string;
+	    championId: number;
+	    positionId: number;
+	
+	    static createFrom(source: any = {}) {
+	        return new Team(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.additionalProp1 = this.convertValues(source["additionalProp1"], AdditionalProp1);
+	        this.accountId = source["accountId"];
+	        this.summonerName = source["summonerName"];
+	        this.summonerInternalName = source["summonerInternalName"];
+	        this.selectedPosition = source["selectedPosition"];
+	        this.championId = source["championId"];
+	        this.positionId = source["positionId"];
+	    }
+	
+		convertValues(a: any, classs: any, asMap: boolean = false): any {
+		    if (!a) {
+		        return a;
+		    }
+		    if (a.slice) {
+		        return (a as any[]).map(elem => this.convertValues(elem, classs));
+		    } else if ("object" === typeof a) {
+		        if (asMap) {
+		            for (const key of Object.keys(a)) {
+		                a[key] = new classs(a[key]);
+		            }
+		            return a;
+		        }
+		        return new classs(a);
+		    }
+		    return a;
+		}
+	}
+	export class SummonerListInGame {
+	    friendTeam: Team[];
+	    enemyTeam: Team[];
+	
+	    static createFrom(source: any = {}) {
+	        return new SummonerListInGame(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.friendTeam = this.convertValues(source["friendTeam"], Team);
+	        this.enemyTeam = this.convertValues(source["enemyTeam"], Team);
+	    }
+	
+		convertValues(a: any, classs: any, asMap: boolean = false): any {
+		    if (!a) {
+		        return a;
+		    }
+		    if (a.slice) {
+		        return (a as any[]).map(elem => this.convertValues(elem, classs));
+		    } else if ("object" === typeof a) {
+		        if (asMap) {
+		            for (const key of Object.keys(a)) {
+		                a[key] = new classs(a[key]);
+		            }
+		            return a;
+		        }
+		        return new classs(a);
+		    }
+		    return a;
+		}
+	}
+	
 	
 	
 	

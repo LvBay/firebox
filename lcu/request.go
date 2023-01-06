@@ -7,6 +7,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/gogf/gf/v2/net/gclient"
+	"github.com/gorilla/websocket"
 	"io"
 	"log"
 	"net/http"
@@ -23,9 +25,12 @@ type AuthInfo struct {
 }
 
 type Client struct {
-	AuthInfo AuthInfo
-	Client   *http.Client
-	Protocol string
+	AuthInfo    AuthInfo
+	Client      *http.Client
+	Protocol    string
+	WsClient    *gclient.WebSocketClient
+	WsConn      *websocket.Conn
+	GamePhaseCh chan string
 }
 
 func NewClient() (*Client, error) {
@@ -44,6 +49,8 @@ func NewClient() (*Client, error) {
 	if isMockLcu() {
 		c.Protocol = "http"
 		c.Client = http.DefaultClient
+		// c.SubscribeGamePhase("")
+		// c.GamePhaseCh = make(chan string)
 	}
 	return c, nil
 }
@@ -84,9 +91,9 @@ func (c *Client) Do(method, path string, body interface{}) ([]byte, error) {
 	req := c.buildRequest(method, path, body)
 
 	bs, err := c.do(req)
-	log.Println("debug info method", req.Method)
-	log.Println("debug info url", req.URL)
-	log.Println("debug info resp", string(bs))
+	// log.Println("debug info method", req.Method)
+	// log.Println("debug info url", req.URL)
+	// log.Println("debug info resp", string(bs))
 	if err != nil {
 		log.Println("http do failed", "err", err, "path", path)
 	}

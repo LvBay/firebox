@@ -1,13 +1,9 @@
 <script setup>
 import test from "../components/test.vue";
-import HelloWorld from "../components/HelloWorld.vue";
+import TeamInfoPreGame from "../components/teamInfoPreGame.vue";
 </script>
 <template>
-  <span>duringGame</span>
   <div>
-    <test></test>
-  </div>
-  <div>
-    <HelloWorld></HelloWorld>
+    <TeamInfoPreGame></TeamInfoPreGame>
   </div>
 </template>
